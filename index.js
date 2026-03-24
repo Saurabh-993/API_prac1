@@ -4,7 +4,7 @@ const data = require("./MOCK_DATA _for_Express.json");
 
 const PORT = 11111;
 const app = express();
-
+const sameRoute = "/api/users";
 app.listen(PORT, () => console.log("The server is live now!"));
 
 // app.get("/api/users", (req, res) => {
@@ -37,3 +37,9 @@ app.get("/api/users/:id", routes.apiUsersDynamicRoute);
 //Here we will create a route through which we can provide direct html to the user
 
 app.get("/users", routes.userBrowser);
+app
+  .route(sameRoute)
+  .post(routes.pendingProgress)
+  .put(routes.pendingProgress)
+  .patch(routes.pendingProgress);
+// this is the way through which we can add multiple method responses through a same command , whatever will be the request the response will be accordingly.

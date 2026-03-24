@@ -20,9 +20,14 @@ function userBrowser(req, res) {
         </ul>`);
 }
 
+function pendingProgress(req, res) {
+  return res.end("Process in Progress!");
+}
+
 module.exports = {
   apiUsersDynamicRoute,
   apiUsersStaticRoute,
   apiUsersFull,
   userBrowser,
+  pendingProgress,
 };
