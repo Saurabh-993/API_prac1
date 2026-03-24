@@ -7,6 +7,9 @@ const app = express();
 const sameRoute = "/api/users";
 app.listen(PORT, () => console.log("The server is live now!"));
 
+// app.use(express.json());//this is used if the incomming request have json (raw) data
+app.use(express.urlencoded({ extended: true })); //this is used if the incomming data have form(basic html form url encoded) like request
+
 // app.get("/api/users", (req, res) => {
 //   return res.json(data); //just a good practice to add return
 // });

@@ -21,6 +21,7 @@ function userBrowser(req, res) {
 }
 
 function pendingProgress(req, res) {
+  console.log(req.body);
   return res.end("Process in Progress!");
 }
 
