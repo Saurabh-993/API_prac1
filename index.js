@@ -7,6 +7,14 @@ const app = express();
 
 app.listen(PORT, () => console.log("The server is live now!"));
 
-app.get("/users", (req, res) => {
-  return res.json(data);
+app.get("/api/users", (req, res) => {
+  return res.json(data); //just a good practice to add return
+});
+
+app.get("/api/users/1", (req, res) => {
+  return res.json(
+    data.filter((obj) => {
+      return obj.id === 1; //it is static routing
+    }),
+  );
 });
