@@ -21,7 +21,7 @@ app.get("/api/users", routes.apiUsersFull); //through routing
 //   );
 // });
 
-app.get("/api/users/1", routes.apiUsersStaticRoute);
+// app.get("/api/users/1", routes.apiUsersStaticRoute); this is the abstract version through routes
 
 // app.get("/api/users/:id", (req, res) => {
 //   const id = Number(req.params.id); //I did this because req.params.id provide us string so first convert it to number so we can compare it
@@ -31,3 +31,5 @@ app.get("/api/users/1", routes.apiUsersStaticRoute);
 //     }),
 //   );
 // });
+
+app.get("/api/users/:id", routes.apiUsersDynamicRoute);
