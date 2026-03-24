@@ -14,4 +14,15 @@ function apiUsersDynamicRoute(req, res) {
   return res.json(data.filter((obj) => obj.id === id));
 }
 
-module.exports = { apiUsersDynamicRoute, apiUsersStaticRoute, apiUsersFull };
+function userBrowser(req, res) {
+  return res.send(`<ul>
+       ${data.map((obj) => `<li> ${obj.first_name}</li>`).join("\n")}
+        </ul>`);
+}
+
+module.exports = {
+  apiUsersDynamicRoute,
+  apiUsersStaticRoute,
+  apiUsersFull,
+  userBrowser,
+};

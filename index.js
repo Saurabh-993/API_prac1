@@ -33,3 +33,7 @@ app.get("/api/users", routes.apiUsersFull); //through routing
 // });
 
 app.get("/api/users/:id", routes.apiUsersDynamicRoute);
+
+//Here we will create a route through which we can provide direct html to the user
+
+app.get("/users", routes.userBrowser);
