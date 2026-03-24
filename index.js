@@ -11,10 +11,19 @@ app.get("/api/users", (req, res) => {
   return res.json(data); //just a good practice to add return
 });
 
-app.get("/api/users/1", (req, res) => {
+// app.get("/api/users/1", (req, res) => {
+//   return res.json(
+//     data.filter((obj) => {
+//       return obj.id === 1; //it is static routing
+//     }),
+//   );
+// });
+
+app.get("/api/users/:id", (req, res) => {
+  const id = Number(req.params.id); //I did this because req.params.id provide us string so first convert it to number so we can compare it
   return res.json(
     data.filter((obj) => {
-      return obj.id === 1; //it is static routing
+      return obj.id === id; // this is dynamic routing
     }),
   );
 });
