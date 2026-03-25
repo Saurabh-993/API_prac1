@@ -1,5 +1,7 @@
 //Here we will just write routes for our main files
+const { json } = require("stream/consumers");
 const data = require("./MOCK_DATA _for_Express.json"); //add this in this file as the data should be defined here
+const fs = require("fs");
 
 function apiUsersFull(req, res) {
   return res.json(data);
@@ -21,7 +23,15 @@ function userBrowser(req, res) {
 }
 
 function pendingProgress(req, res) {
-  console.log(req.body);
+  const newEntry = req.body;
+  data.push(newEntry);
+  fs.writeFile(
+    "MOCK_DATA _for_Express.json",
+    JSON.stringify(data, null, 2),
+    () =>
+      //here we added a new value inside the MOCk_data file here I have to insert the ID through postman
+      console.log(newEntry, "\n entry added!"),
+  );
   return res.end("Process in Progress!");
 }
 
