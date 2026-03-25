@@ -63,7 +63,18 @@ function putRequestSuccess(req, res) {
   return res.end("entry is updated");
 }
 
-function patchRequestSuccess(req, res) {}
+function patchRequestSuccess(req, res) {
+  const updateEntryId = req.body.id; //dude we didn't convert this one into number as the entry that we provided is in string form in database (here mock_Data).
+  const updateobj = data.find((obj) => obj.id === updateEntryId); //here we can see that find provides the first object that matches.
+  const indexUpdate = data.indexOf(updateobj);
+  data[indexUpdate].last_name = req.body.last_name;
+  fs.writeFile(
+    "MOCK_DATA _for_Express.json",
+    JSON.stringify(data, null, 2),
+    (err, suc) => console.log("updated the item"),
+  );
+  return res.end("Your data is has been updates");
+}
 
 function deleteRequestSuccess(req, res) {}
 
