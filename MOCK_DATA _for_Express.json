@@ -7976,14 +7976,6 @@
     "Title": "Food Chemist"
   },
   {
-    "id": 998,
-    "first_name": "Dode",
-    "last_name": "Handrick",
-    "email": "dhandrickrp@nhs.uk",
-    "gender": "Female",
-    "Title": "Assistant Media Planner"
-  },
-  {
     "id": 999,
     "first_name": "Eberto",
     "last_name": "Jerams",
@@ -8011,12 +8003,5 @@
     "title": "berojgar",
     "email": "yo kya hove",
     "id": "1002"
-  },
-  {
-    "first_name": "kick",
-    "last_name": "buttowski",
-    "title": "khatron_ka_khiladi",
-    "email": "buttOwski@jaabaz.com",
-    "id": "1003"
   }
 ]

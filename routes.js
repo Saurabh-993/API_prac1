@@ -76,7 +76,19 @@ function patchRequestSuccess(req, res) {
   return res.end("Your data is has been updates");
 }
 
-function deleteRequestSuccess(req, res) {}
+function deleteRequestSuccess(req, res) {
+  const deleteId = Number(req.body.id);
+  const deleteIndex = data.findIndex((obj) => obj.id === deleteId);
+  data.splice(deleteIndex, 1); //this command just will delete the element that we are asking for.
+  fs.writeFile(
+    "MOCK_DATA _for_Express.json",
+    JSON.stringify(data, null, 2),
+    (err, suc) => {
+      console.log("the targeted element is deleted");
+    },
+  );
+  return res.end("your request is completed!");
+}
 
 module.exports = {
   apiUsersDynamicRoute,
