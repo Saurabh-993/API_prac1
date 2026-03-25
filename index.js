@@ -42,7 +42,8 @@ app.get("/api/users/:id", routes.apiUsersDynamicRoute);
 app.get("/users", routes.userBrowser);
 app
   .route(sameRoute)
-  .post(routes.pendingProgress)
-  .put(routes.pendingProgress)
-  .patch(routes.pendingProgress);
+  .post(routes.postRequestSuccess)
+  .put(routes.putRequestSuccess)
+  .patch(routes.patchRequestSuccess)
+  .delete(routes.deleteRequestSuccess);
 // this is the way through which we can add multiple method responses through a same command , whatever will be the request the response will be accordingly.

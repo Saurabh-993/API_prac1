@@ -35,7 +35,7 @@ function userBrowser(req, res) {
 //   return res.end("Process in Progress!");
 // }
 
-function pendingProgress(req, res) {
+function postRequestSuccess(req, res) {
   const newEntry = req.body;
   data.push({ ...newEntry, id: `${data.length + 1}` }); //this ... is spread function is basically destruct the object, here with the help of this one,
   // we are just generating new id's for the entries DataBases uses similar kind of logics for entries (note: their logics are much better and complex)
@@ -49,10 +49,31 @@ function pendingProgress(req, res) {
   return res.end("Process in Progress!");
 }
 
+function putRequestSuccess(req, res) {
+  const replaceEntryID = Number(req.body.id); //because request ko string form mai hi smjha jaata hai
+  const replacingObject = data.filter((obj) => obj.id === replaceEntryID); //NOTE: here the replacing object is an array of single objecgt as filter return array.
+  const indexReplace = data.indexOf(...replacingObject); //Here the spread function is breaking the array and making it only object.
+  data[indexReplace] = req.body; //we are just putting body (received object) inside the array of objects.
+  //Note: agar aap find use karte to ek object milta and findIndex ke through seedhe index hi mil jaata, numeric value.
+  fs.writeFile(
+    "MOCK_DATA _for_Express.json",
+    JSON.stringify(data, null, 2),
+    (err, success) => console.log("the data is updated now!"),
+  );
+  return res.end("entry is updated");
+}
+
+function patchRequestSuccess(req, res) {}
+
+function deleteRequestSuccess(req, res) {}
+
 module.exports = {
   apiUsersDynamicRoute,
   apiUsersStaticRoute,
   apiUsersFull,
   userBrowser,
-  pendingProgress,
+  postRequestSuccess,
+  putRequestSuccess,
+  patchRequestSuccess,
+  deleteRequestSuccess,
 };
