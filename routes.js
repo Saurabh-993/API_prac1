@@ -22,9 +22,23 @@ function userBrowser(req, res) {
         </ul>`);
 }
 
+// function pendingProgress(req, res) {
+//   const newEntry = req.body;
+//   data.push(newEntry);
+//   fs.writeFile(
+//     "MOCK_DATA _for_Express.json",
+//     JSON.stringify(data, null, 2),
+//     () =>
+//       //here we added a new value inside the MOCk_data file here I have to insert the ID through postman
+//       console.log(newEntry, "\n entry added!"),
+//   );
+//   return res.end("Process in Progress!");
+// }
+
 function pendingProgress(req, res) {
   const newEntry = req.body;
-  data.push(newEntry);
+  data.push({ ...newEntry, id: `${data.length + 1}` }); //this ... is spread function is basically destruct the object, here with the help of this one,
+  // we are just generating new id's for the entries DataBases uses similar kind of logics for entries (note: their logics are much better and complex)
   fs.writeFile(
     "MOCK_DATA _for_Express.json",
     JSON.stringify(data, null, 2),
