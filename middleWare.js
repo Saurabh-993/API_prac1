@@ -21,3 +21,9 @@ app.get("/home", (req, res) => {
 app.listen(11111, () => {
   console.log("the server is ready to  work!");
 });
+
+app.handle(
+  { reqbody: "this is the body of the req" },
+  { resBody: "this is the body of the response" },
+  () => "this basically routes",
+); //this is a private function of expressJs that's basically provides the route table matches to the other functions like add.get ,add.put etc. but you can't make use of it as it is a way complex.
