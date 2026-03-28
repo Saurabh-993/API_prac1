@@ -3,13 +3,13 @@ const express = require("express");
 const app = express();
 
 app.use((req, res, next) => {
-  req.body = `for every request 1st middleware will hold the method ${req.method}`; //note they will not run on the user side as they are just in text format.and their is no client side rendering but we can do this by another method we will se that in the next commit
+  req.body = `<script>for every request 1st middleware will hold the method ${req.method}</script>`; //note it will also not work as the next middleware overwriting this one
   console.log("first middleware run and remember the calling method");
   next();
 });
 
 app.use((req, res, next) => {
-  req.body = `for every request 2nd middleware will hold the date ${new Date().toISOString}`;
+  req.body = `<script>for every request 2nd middleware will hold the date ${new Date().toISOString}</script>`; //Through this middleware we overwrite the previous one
   console.log("second middleware runs and capture the time");
   next();
 });
