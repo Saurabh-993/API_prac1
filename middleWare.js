@@ -3,21 +3,19 @@ const express = require("express");
 const app = express();
 
 app.use((req, res, next) => {
-  req.body = `for every request 1st middleware will hold the method ${req.method}`; //note it will also not work as the next middleware overwriting this one
+  res.customProperty = `for every request 1st middleware will hold the method ${req.method}`; //note using the previous way was bit risky as the req.body and res.body are important for internal working of the express , here the code was simple that's why they run without any problem.
   console.log("first middleware run and remember the calling method");
   next();
 });
 
 app.use((req, res, next) => {
-  req.body += `\n for every request 2nd middleware will hold the date ${new Date().toISOString()}`; //now we have just appended the body i.e. req.body = req.body + "our new code" ,in this way we are able to make both commands run
-  console.log("second middleware runs and capture the time");
+  res.customProperty += `\n for every request 2nd middleware will hold the date ${new Date().toISOString()}`; //now we have created a customProperty and you can name it anything as it is stored inside the response body
   next();
 });
 
 app.get("/home", (req, res) => {
-  res.body = req.body;
   return res.end(
-    ` this is the response body that is set by first and second middleware \n ${res.body}`, //just a code for the user so we can check the logic of middlewares.
+    ` this is the response body that is set by first and second middleware \n ${res.customProperty}`, //just a code for the user so we can check the logic of middlewares.
   );
 });
 
