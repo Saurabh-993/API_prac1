@@ -3,13 +3,13 @@ const express = require("express");
 const app = express();
 
 app.use((req, res, next) => {
-  req.body = `<script>for every request 1st middleware will hold the method ${req.method}</script>`; //note it will also not work as the next middleware overwriting this one
+  req.body = `for every request 1st middleware will hold the method ${req.method}`; //note it will also not work as the next middleware overwriting this one
   console.log("first middleware run and remember the calling method");
   next();
 });
 
 app.use((req, res, next) => {
-  req.body = `<script>for every request 2nd middleware will hold the date ${new Date().toISOString}</script>`; //Through this middleware we overwrite the previous one
+  req.body += `\n for every request 2nd middleware will hold the date ${new Date().toISOString()}`; //now we have just appended the body i.e. req.body = req.body + "our new code" ,in this way we are able to make both commands run
   console.log("second middleware runs and capture the time");
   next();
 });
