@@ -3,19 +3,22 @@ const express = require("express");
 const app = express();
 
 app.use((req, res, next) => {
-  req.body = "hey how are you first time";
-  res.send("I am returning this from the first middleware");
+  req.body = `for every request 1st middleware will hold the method ${req.method}`; //note they will not run on the user side as they are just in text format.and their is no client side rendering but we can do this by another method we will se that in the next commit
+  console.log("first middleware run and remember the calling method");
+  next();
 });
 
 app.use((req, res, next) => {
-  console.log(req.body);
-  req.body = "hey how is it going second time";
+  req.body = `for every request 2nd middleware will hold the date ${new Date().toISOString}`;
+  console.log("second middleware runs and capture the time");
   next();
 });
 
 app.get("/home", (req, res) => {
-  console.log(req.body);
-  return res.end("this is working properly");
+  res.body = req.body;
+  return res.end(
+    ` this is the response body that is set by first and second middleware \n ${res.body}`, //just a code for the user so we can check the logic of middlewares.
+  );
 });
 
 app.get("/user", (req, res) => {
