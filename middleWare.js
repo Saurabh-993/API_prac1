@@ -4,7 +4,7 @@ const app = express();
 
 app.use((req, res, next) => {
   req.body = "hey how are you first time";
-  next();
+  res.send("I am returning this from the first middleware");
 });
 
 app.use((req, res, next) => {
@@ -18,12 +18,15 @@ app.get("/home", (req, res) => {
   return res.end("this is working properly");
 });
 
+app.get("/user", (req, res) => {
+  return res.status(211).end("what is the status code bro"); //through res.status() we can add the status code on our responses
+});
+
 app.listen(11111, () => {
   console.log("the server is ready to  work!");
 });
-
-app.handle(
-  { reqbody: "this is the body of the req" },
-  { resBody: "this is the body of the response" },
-  () => "this basically routes",
-); //this is a private function of expressJs that's basically provides the route table matches to the other functions like add.get ,add.put etc. but you can't make use of it as it is a way complex.
+// app.handle(
+//   { reqbody: "this is the body of the req" },
+//   { resBody: "this is the body of the response" },
+//   () => "this basically routes",
+// ); //this is a private function of expressJs that's basically provides the route table matches to the other functions like add.get ,add.put etc. but you can't make use of it as it is a way complex.
